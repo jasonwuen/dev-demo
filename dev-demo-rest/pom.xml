@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.net.wujun</groupId>
+        <artifactId>dev-demo</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>dev-demo-rest</artifactId>
+    <packaging>jar</packaging>
+
+    <name>dev-demo-rest</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>dev-demo-service</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**.properties</exclude>
+                        <exclude>**.yml</exclude>
+                        <exclude>**.xml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>${start-class}</mainClass>
+                    <layout>ZIP</layout>
+                    <excludeGroupIds>
+                        org.apache.commons,
+                        org.thymeleaf,
+                        org.slf4j,
+                        org.projectlombok,
+                        org.apache.httpcomponents,
+                        org.hibernate,
+                        com.google.guava,
+                        org.unbescape,
+                        com.fasterxml.jackson.core,
+                        org.jsoup,
+                        commons-io,
+                        org.apache.logging.log4j,
+                        commons-codec,
+                        org.springframework,
+                        org.codehaus.groovy,
+                        org.yaml,
+                        org.sql2o,
+                        org.jboss.xnio,
+                        org.jboss.spec.javax.websocket,
+                        org.attoparser,
+                        joda-time,
+                        nz.net.ultraq.thymeleaf,
+                        org.glassfish,
+                        org.springframework.boot,
+                        com.alibaba,
+                        javax.servlet,
+                        org.apache.tomcat,
+                        org.jboss.spec.javax.annotation,
+                        org.jboss.logging,
+                        io.undertow,
+                        javax.validation,
+                        com.h2database,
+                        com.fasterxml
+                    </excludeGroupIds>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
