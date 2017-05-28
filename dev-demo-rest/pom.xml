@@ -42,7 +42,13 @@
                 <configuration>
                     <mainClass>${start-class}</mainClass>
                     <layout>ZIP</layout>
-                    <excludeGroupIds>
+                    <excludes>
+                        <exclude>
+                            <groupId>${project.parent.groupId}</groupId>
+                            <artifactId>dev-demo-service</artifactId>
+                        </exclude>
+                    </excludes>
+                    <!--<excludeGroupIds>
                         org.apache.commons,
                         org.thymeleaf,
                         org.slf4j,
@@ -76,7 +82,7 @@
                         javax.validation,
                         com.h2database,
                         com.fasterxml
-                    </excludeGroupIds>
+                    </excludeGroupIds>-->
                 </configuration>
             </plugin>
         </plugins>
