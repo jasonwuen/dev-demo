@@ -20,6 +20,8 @@
     <url>http://www.wujun.net.cn</url>
 
     <modules>
+        <module>dev-demo-assembly-descriptor</module>
+        <module>dev-demo-fastjson</module>
         <module>dev-demo-service</module>
         <module>dev-demo-rest</module>
         <module>dev-demo-assembly</module>
@@ -27,7 +29,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
 
         <thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
         <thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
@@ -36,6 +38,8 @@
 
         <start-class>cn.net.wujun.Application</start-class>
         <skip.test>true</skip.test>
+
+        <conf.module>.</conf.module>
     </properties>
 
     <dependencies>

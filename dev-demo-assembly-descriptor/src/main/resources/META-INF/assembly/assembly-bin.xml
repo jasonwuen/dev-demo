@@ -9,18 +9,18 @@
 
     <fileSets>
         <fileSet>
-            <directory>${project.basedir}/src/main/bin/</directory>
             <outputDirectory>bin</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
             <fileMode>0755</fileMode>
+            <directory>${project.build.directory}/assembly/META-INF/assembly/bin</directory>
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/dev-demo-rest/src/main/resources</directory>
-            <outputDirectory>/conf</outputDirectory>
+            <outputDirectory>conf</outputDirectory>
             <fileMode>0644</fileMode>
+            <directory>${project.parent.basedir}/${conf.module}/src/main/resources</directory>
             <lineEnding>unix</lineEnding>
         </fileSet>
     </fileSets>
@@ -28,10 +28,10 @@
     <dependencySets>
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
-            <useTransitiveDependencies>true</useTransitiveDependencies>
             <unpack>false</unpack>
             <scope>runtime</scope>
             <useProjectArtifact>true</useProjectArtifact>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
         </dependencySet>
     </dependencySets>
 </assembly>

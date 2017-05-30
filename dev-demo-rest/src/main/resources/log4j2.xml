@@ -4,18 +4,21 @@
     <Properties>
         <Property name="log-path">${sys:LOG_PATH}</Property>
         <Property name="app-name">dev-demo-rest</Property>
+        <Property name="CONSOLE_LOG_PATTERN">%highlight{%d{yyyy-MM-dd HH:mm:ss.SSS} [%t#${sys:PID}] %-5level %logger{36}.%M:%L - %msg%n}{TRACE=white, DEBUG=blue, INFO=green, WARN=yellow, ERROR=magenta, FATAL=red}</Property>
     </Properties>
 
     <Appenders>
-        <Console name="Console">
-            <PatternLayout
-                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36}.%M:%L - %msg%n"/>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--<PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36}.%M:%L - %msg%n"/>-->
+            <PatternLayout pattern="${CONSOLE_LOG_PATTERN}"/>
+
         </Console>
 
         <RollingRandomAccessFile name="File" fileName="${log-path}/${app-name}.log"
                                  filePattern="${log-path}/${app-name}_%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout
-                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36}.%M:%L - %msg%n"/>
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{[%t]} %-5level %logger{36}.%M:%L - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
                 <SizeBasedTriggeringPolicy size="64 MB"/>

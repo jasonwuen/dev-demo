@@ -20,6 +20,12 @@
             <artifactId>dev-demo-service</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>dev-demo-fastjson</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -42,49 +48,9 @@
                 <configuration>
                     <mainClass>${start-class}</mainClass>
                     <layout>ZIP</layout>
-                    <excludes>
-                        <exclude>
-                            <groupId>${project.parent.groupId}</groupId>
-                            <artifactId>dev-demo-service</artifactId>
-                        </exclude>
-                    </excludes>
-                    <!--<excludeGroupIds>
-                        org.apache.commons,
-                        org.thymeleaf,
-                        org.slf4j,
-                        org.projectlombok,
-                        org.apache.httpcomponents,
-                        org.hibernate,
-                        com.google.guava,
-                        org.unbescape,
-                        com.fasterxml.jackson.core,
-                        org.jsoup,
-                        commons-io,
-                        org.apache.logging.log4j,
-                        commons-codec,
-                        org.springframework,
-                        org.codehaus.groovy,
-                        org.yaml,
-                        org.sql2o,
-                        org.jboss.xnio,
-                        org.jboss.spec.javax.websocket,
-                        org.attoparser,
-                        joda-time,
-                        nz.net.ultraq.thymeleaf,
-                        org.glassfish,
-                        org.springframework.boot,
-                        com.alibaba,
-                        javax.servlet,
-                        org.apache.tomcat,
-                        org.jboss.spec.javax.annotation,
-                        org.jboss.logging,
-                        io.undertow,
-                        javax.validation,
-                        com.h2database,
-                        com.fasterxml
-                    </excludeGroupIds>-->
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 </project>

@@ -14,6 +14,10 @@
 
     <name>dev-demo-assembly</name>
 
+    <properties>
+        <conf.module>dev-demo-rest</conf.module>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
@@ -24,21 +28,66 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.parent.groupId}</groupId>
+                                    <artifactId>dev-demo-assembly-descriptor</artifactId>
+                                    <version>${project.parent.version}</version>
+                                    <outputDirectory>${project.build.directory}/assembly
+                                    </outputDirectory>
+                                    <includes>META-INF/assembly/**</includes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <!--<dependencies>
+                    <dependency>
+                        <groupId>${project.parent.groupId}</groupId>
+                        <artifactId>dev-demo-assembly-descriptor</artifactId>
+                        <version>${project.parent.version}</version>
+                    </dependency>
+                </dependencies>-->
                 <configuration>
-                    <descriptor>src/main/assembly/assembly.xml</descriptor>
+                    <descriptors>
+                        <descriptor>
+                            ${project.build.directory}/assembly/META-INF/assembly/assembly-bin.xml
+                        </descriptor>
+                    </descriptors>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>assemble</id>
+                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
+                <!--
+                <configuration>
+                    <ignoreMissingDescriptor>true</ignoreMissingDescriptor>
+                    <descriptorRefs>
+                        <descriptorRef>assembly</descriptorRef>
+                    </descriptorRefs>
+                </configuration>-->
             </plugin>
         </plugins>
     </build>
