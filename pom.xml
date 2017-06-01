@@ -152,6 +152,42 @@
         <!-- TEST end -->
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile>default</build.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>local-test</id>
+            <properties>
+                <build.profile>local-test</build.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <build.profile>dev</build.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <build.profile>test</build.profile>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <build.profile>prod</build.profile>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
 
@@ -164,8 +200,9 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <maxmem>512m</maxmem>
+                    <fork>true</fork>
                     <compilerArgs>
-                        <arg>-Xlint:none</arg>
+                        <arg>-Xlint:all,-serial,-path</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
