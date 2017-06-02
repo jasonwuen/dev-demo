@@ -20,7 +20,11 @@
         <fileSet>
             <outputDirectory>conf</outputDirectory>
             <fileMode>0644</fileMode>
-            <directory>${project.parent.basedir}/${conf.module}/src/main/resources</directory>
+            <directory>${project.parent.basedir}/${conf.module}/target/classes</directory>
+            <includes>
+                <include>*.xml</include>
+                <include>*.properties</include>
+            </includes>
             <lineEnding>unix</lineEnding>
         </fileSet>
     </fileSets>

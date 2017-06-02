@@ -44,13 +44,30 @@ fi
 
 CONF_FILE=$CONF_DIR/application.properties
 if [ -f "$CONF_FILE" ] ; then
-    LOGS_DIR=`grep logging.path $CONF_FILE|cut -d'=' -f2`
-    SERVER_NAME=`grep application.name $CONF_FILE|cut -d'=' -f2`
+    PROFILES_ACTIVE=`sed '/^spring.profiles.active/!d;s/.*=//' $CONF_FILE`
+    LOGS_DIR=`sed '/^logging.path/!d;s/.*=//' $CONF_FILE`
+    SERVER_NAME=`sed '/^application.name/!d;s/.*=//' $CONF_FILE`
+    JAVA_OPTS=`sed '/^JAVA_OPTS/!d;s/.*=//' $CONF_FILE`
 fi
 
-JAVA_OPTS="-server -Xms1024m -Xmx1024m -Xmn256m \
--Xss256k -XX:+UseConcMarkSweepGC \
--XX:+UseParNewGC"
+echo "PROFILES_ACTIVE:$PROFILES_ACTIVE"
+
+if [[ "$PROFILES_ACTIVE"x != "default" ]]; then
+    ENV_CONF_FILE=$CONF_DIR/application-$PROFILES_ACTIVE.properties
+    echo "ENV_CONF_FILE:$ENV_CONF_FILE"
+    if [ -f "$ENV_CONF_FILE" ] ; then
+        ENV_JAVA_OPTS=`sed '/^JAVA_OPTS/!d;s/.*=//' $ENV_CONF_FILE`
+        if [ "$ENV_JAVA_OPTS"x != ""x ]; then
+            JAVA_OPTS=$ENV_JAVA_OPTS
+        fi
+    fi
+fi
+
+echo "JAVA_OPTS:$JAVA_OPTS"
+
+#JAVA_OPTS="-server -Xms1024m -Xmx1024m -Xmn256m \
+#-Xss256k -XX:+UseConcMarkSweepGC \
+#-XX:+UseParNewGC"
 
 if [ x"$SERVER_NAME" = x ] ; then
     echo "ERROR: Could not find server name with application.properties";

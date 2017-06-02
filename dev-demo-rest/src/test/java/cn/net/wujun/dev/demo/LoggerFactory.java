@@ -27,7 +27,6 @@ public class LoggerFactory {
     }
 
     public static void main(String[] args) {
-        System.out.println(Profiles.Default);
         System.out.println(allProperties.getProperty("spring.profiles.active"));
     }
 }

@@ -159,13 +159,13 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <build.profile>default</build.profile>
+                <env>default</env>
             </properties>
         </profile>
         <profile>
             <id>local-test</id>
             <properties>
-                <build.profile>local-test</build.profile>
+                <env>local-test</env>
             </properties>
         </profile>
         <profile>
@@ -177,13 +177,13 @@
         <profile>
             <id>test</id>
             <properties>
-                <build.profile>test</build.profile>
+                <env>test</env>
             </properties>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
-                <build.profile>prod</build.profile>
+                <env>prod</env>
             </properties>
         </profile>
     </profiles>
